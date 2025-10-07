@@ -1,0 +1,23 @@
+@if (loading) {
+  <p>Cargando usuario...</p>
+} @else {
+  @if (email) {
+    <div class="bienvenida">
+      <h2>Bienvenido, {{ email }} 👽</h2>
+      <img 
+        src="https://cdn-icons-png.flaticon.com/512/10935/10935904.png" 
+        alt="Bienvenida extraterrestre" 
+        class="bienvenida-img"
+      />
+      <button (click)="logout()">Cerrar Sesión</button>
+    </div>
+  } @else {
+    <h2>No hay sesión activa</h2>
+    <a routerLink="/login">Iniciar Sesión</a>
+    <a routerLink="/registro">Registrarse</a>
+  }
+}
+
+
+
+
