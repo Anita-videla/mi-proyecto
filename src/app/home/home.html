@@ -9,6 +9,18 @@
         alt="Bienvenida extraterrestre" 
         class="bienvenida-img"
       />
+      
+      <div class="menu">
+        <a routerLink="/ahorcado">Ahorcado</a>
+        <a routerLink="/mayor-menor">Mayor o Menor</a>
+        <a routerLink="/preguntados">Preguntados</a>
+        <a routerLink="/juego-propio">Mi Juego Propio</a>
+        <a routerLink="/chat">Chat</a>
+        <a routerLink="/resultados-juegos">Resultados de Juegos</a>
+        <a routerLink="/encuesta">Encuesta</a>
+        <a routerLink="/resultados-encuesta">Ver Encuestas (Admin)</a>
+      </div>
+      
       <button (click)="logout()">Cerrar Sesión</button>
     </div>
   } @else {
@@ -17,7 +29,4 @@
     <a routerLink="/registro">Registrarse</a>
   }
 }
-
-
-
 

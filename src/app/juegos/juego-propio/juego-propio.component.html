@@ -1,0 +1,50 @@
+<div class="juego-propio-container">
+  <h2>Aventura Numérica 🎲 (Juego Propio)</h2>
+
+  <!-- Sección de Juego Activo -->
+  <div *ngIf="!gameOver">
+    <p class="score">Puntaje Actual: <strong>{{ currentScore }}</strong></p>
+    <p class="round">Ronda: {{ round }}</p>
+
+    <div class="adventure-box">
+      <p class="message">{{ currentMessage }}</p>
+    </div>
+
+    <!-- Opciones de Avance -->
+    <div class="options-grid">
+      <button 
+        (click)="makeDecision('multiply')" 
+        [disabled]="isProcessing"
+        class="multiply-btn"
+      >
+        Opción 1: ¡DUPLICA! (x2)
+      </button>
+      
+      <button 
+        (click)="makeDecision('divide')" 
+        [disabled]="isProcessing"
+        class="divide-btn"
+      >
+        Opción 2: ¡DIVIDE! (/2)
+      </button>
+    </div>
+  </div>
+
+  <!-- Sección de Fin de Juego -->
+  <div *ngIf="gameOver" class="game-over">
+    <h3>¡Fin de la Aventura!</h3>
+    <p class="final-score">Tu puntaje final es: <strong>{{ currentScore }}</strong></p>
+    
+    <div *ngIf="isSaving" class="feedback">
+      Guardando resultado...
+    </div>
+    <div *ngIf="!isSaving && feedbackMessage">
+      {{ feedbackMessage }}
+    </div>
+
+    <div class="game-over-actions">
+      <button (click)="ngOnInit()">Jugar de Nuevo</button> 
+      <button routerLink="/home">Volver al Home</button>
+    </div>
+  </div>
+</div>

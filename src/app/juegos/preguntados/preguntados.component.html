@@ -1,0 +1,47 @@
+ <div class="preguntados-container">
+  <h2>Preguntados: Adivina la Película 🎥</h2>
+
+  <!-- @if se usa en el template, importando RouterLink y NgClass -->
+  <div *ngIf="currentQuestion && !gameOver" class="question-card">
+    <p class="score">Puntaje: {{ currentScore }} / {{ totalQuestions }}</p>
+    
+    <p class="question-text">¿Cuál es el título de la película con este póster?</p>
+    
+    <!-- Imagen de la película (Póster) -->
+    <img 
+      [src]="currentQuestion.imageUrl" 
+      alt="Póster de la película a adivinar" 
+      class="movie-image"
+    />
+
+    <!-- Opciones de respuesta: Llama a selectAnswer(option) -->
+    <div class="options-grid">
+      <button 
+        *ngFor="let option of currentQuestion.options"
+        (click)="selectAnswer(option)" 
+        [disabled]="isAnswered"
+        class="option-button"
+      >
+        {{ option }}
+      </button>
+    </div>
+
+    <!-- Feedback y Mensaje de Fin de Juego -->
+    <p *ngIf="feedbackMessage" class="feedback" 
+        [ngClass]="{'correct': feedbackMessage.includes('¡Correcto!'), 'incorrect': feedbackMessage.includes('Incorrecto.')}">
+        {{ feedbackMessage }}
+    </p>
+  </div>
+  
+  <div *ngIf="gameOver" class="game-over">
+    <h3>¡Juego Terminado!</h3>
+    <p>Tu puntaje final es: <strong>{{ currentScore }} / {{ totalQuestions }}</strong></p>
+    <!-- Los botones necesitan RouterLink para funcionar, que se importa en el TS -->
+    <button routerLink="/home">Volver al Home</button> 
+    <button (click)="ngOnInit()">Jugar de Nuevo</button> 
+  </div> 
+  
+  <p *ngIf="!currentQuestion && !gameOver">Cargando preguntas de TMDb...</p>
+</div>
+
+}
